@@ -32,7 +32,7 @@ The program reads a `.txt` file containing Korean text and performs the followin
 **Usage Example**
 
 ```
-텍스트 파일 이름을 확인하고 wordcloud_maker.py 내 경로를 수정한 뒤 다음을 실행하세요:
+Check the name of your text file and update the path inside wordcloud_maker.py, then run the following:
 python wordcloud_maker.py
 ```
 
