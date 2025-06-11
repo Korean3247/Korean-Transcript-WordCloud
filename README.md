@@ -1,4 +1,4 @@
-# WordCloudGenerator
+# Korean Transcript WordCloud
 
 **Program Title**
 Korean Word Cloud Generator from Transcripts
