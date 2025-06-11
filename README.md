@@ -1,90 +1,67 @@
-````markdown
-# Korean-Transcript-WordCloud
+# WordCloudGenerator
 
-Generate clean, high-resolution word-cloud images from Korean transcripts in **one command**.  
-The script combines `KoNLPy`-Okt stemming, custom stop-word filtering, frequency scaling, and
-optional per-word boosting (e.g., *“주차”, “자가용”*). Perfect for interview / FGI transcripts,
-policy workshops, or any large block of Korean text.
+**Program Title**
+Korean Word Cloud Generator from Transcripts
 
-<p align="center">
-  <img src="wordcloud_output.png" width="450" alt="Sample word-cloud">
-</p>
+**Description**
+This Python program processes Korean text—especially from interview transcripts or policy recordings—and generates a word cloud by analyzing noun frequencies. It uses the KoNLPy library for morphological analysis, removes common filler words and particles, applies custom stop-word filtering, and emphasizes specified keywords visually.
 
----
+**How It Works**
+The program reads a `.txt` file containing Korean text and performs the following steps:
 
-## ✨  Features
-- **Accurate Korean tokenization** with `Okt` and stem normalization  
-- **Noise removal**: interjections, endings, particles → regex pre-processing  
-- **Smart stop-word list** (easily extendable)  
-- **Per-word boost** to spotlight key terms  
-- **Frequency smoothing** (√-scaling by default) to control oversized words  
-- Outputs **800×800 px PNG** (DPI 300) ready for reports & slides  
+1. Removes filler words and unnecessary particles via regex.
+2. Analyzes the text using the `Okt` morphological analyzer with stemming.
+3. Filters out common or domain-specific stopwords.
+4. Applies optional keyword boosting to emphasize terms (e.g., "주차", "자가용").
+5. Scales word frequencies for better visual balance.
+6. Generates a word cloud image and saves it as a high-resolution PNG file.
 
----
+**Input Requirements**
 
-## 🛠  Requirements
-| Package | Tested Version |
-|---------|---------------|
-| Python 3.9+ | |
-| konlpy | 0.6.0 |
-| wordcloud | 1.9.3 |
-| matplotlib | 3.9.0 |
+* Input Text File: A `.txt` file containing Korean text (UTF-8 encoding).
+* Font File: A Korean TTF font file (e.g., `NanumGothic.ttf`) in the same directory.
 
-> **Font** – place a Korean TTF (e.g., `NanumGothic.ttf`) in the project root or update the path.
+**Features**
 
-Install all deps:
+* KoNLPy-based noun extraction and normalization.
+* Easily extensible stop-word list.
+* Boost specific words for emphasis in visualization.
+* Adjustable frequency scaling to avoid oversized dominant words.
+* Saves output as a clean 800×800 high-DPI image.
 
-```bash
-pip install konlpy wordcloud matplotlib
-````
+**Usage Example**
 
-macOS/Linux users may need:
-
-```bash
-sudo apt-get install g++                     # Ubuntu
-brew install openjdk                         # macOS
-export JAVA_HOME=$(/usr/libexec/java_home)   # macOS
 ```
-
----
-
-## 🚀  Usage
-
-```bash
-python wordcloud_maker.py \
-    --input recording_transcript(2).txt \
-    --font NanumGothic.ttf \
-    --output wordcloud_output.png
-```
-
-*No CLI yet?*
-Just edit the filenames at the top of **`wordcloud_maker.py`** and run:
-
-```bash
+텍스트 파일 이름을 확인하고 wordcloud_maker.py 내 경로를 수정한 뒤 다음을 실행하세요:
 python wordcloud_maker.py
 ```
 
-The image will open in a matplotlib window and save to `wordcloud_output.png`.
+The output image `wordcloud_output.png` will appear in the same folder.
 
----
+**Files**
 
-## ⚙️  Customisation
+* `wordcloud_maker.py`: The main Python script.
+* `recording_transcript(2).txt`: Example input transcript.
+* `NanumGothic.ttf`: Korean font file for proper rendering.
+* `wordcloud_output.png`: The generated image (output).
 
-| Task                         | How                                               |
-| ---------------------------- | ------------------------------------------------- |
-| **Add/modify stop-words**    | Update the `stopwords` list (section #4).         |
-| **Highlight specific words** | Edit `boost_words` dict (section #7).             |
-| **Limit max font size**      | Change `max_font_size` in the `WordCloud()` call. |
-| **Adjust frequency scaling** | Tweak the exponent in `count**0.7` (0.5 ≦ x ≦ 1). |
+**System Requirements**
 
----
+* Python 3.x
+* Libraries: `konlpy`, `wordcloud`, `matplotlib`
+* Korean-compatible font (e.g., NanumGothic)
 
-## 🤝  Contributing
+**How to Run**
 
-1. Fork → Commit message in English or Korean
-2. Run `pre-commit run --all-files` (optional)
-3. Pull-request to `main`
+1. Install required packages:
 
-Bug-reports and feature requests welcome via Issues 💬.
+   ```bash
+   pip install konlpy wordcloud matplotlib
+   ```
+2. Place your `.txt` input and `.ttf` font in the same directory as the script.
+3. Run the script:
 
-```
+   ```bash
+   python wordcloud_maker.py
+   ```
+4. View the output image `wordcloud_output.png`
